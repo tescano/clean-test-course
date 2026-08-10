@@ -23,3 +23,5 @@ env.bak/
 venv.bak/ 
 
 test*.sh
+backend/.python-version
+backend/.coverage

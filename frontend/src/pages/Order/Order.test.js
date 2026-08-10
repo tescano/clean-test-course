@@ -24,7 +24,7 @@ describe('Test Order', () => {
     jest.clearAllMocks();
   });
 
-  test('Test Delivery Fee', async () => {
+  test('Test Delivery Fee', async () => {// run a test case
     //Add a Test to verify that delivery fee shows up here
     //Act:
     //Setup the Mock API
@@ -37,7 +37,7 @@ describe('Test Order', () => {
     );
     //Assert: replace the return true.
     await waitFor(() => {
-      return true;
+      expect(screen.getAllByText('$2.50')).toHaveLength(1);
     });
   });
 
@@ -63,15 +63,16 @@ describe('Test Order', () => {
     );
     //Assert: replace the return true.
     await waitFor(() => {
-      return true;
+      expect(screen.getAllByText('$5.00')).toHaveLength(1);
     });
   });
 });
 
 const setupMock = () => {
   //Mock API calls
-  const mockGet = jest.spyOn(axios, 'get');
-  mockGet.mockImplementation((url) => {
+  const mockGet = jest.spyOn(axios, 'get');//creates a mock for calls to `axios.get()`
+  mockGet.mockImplementation((url) => {// url, is the url that was passed in from a call in the front-end code to `axios.get()`
+    //Return a promise that resolves
     switch (url) {
       case `${API_URL}/api/delivery/test-fun/0`:
         return Promise.resolve({
